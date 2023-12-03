@@ -31,6 +31,14 @@ class RateLoader:
       self.df['t'] = pd.to_datetime(self.df['ts'], unit='s')
     return self
 
+  def hour_candles_data_frame(self):
+    with open(os.path.join(self.file_path, self.pair + '_h.json')) as f:
+      data = json.load(f)
+      self.df = pd.DataFrame(data['candles'])
+      self.df.drop(columns=['m'], inplace=True)
+      self.df.rename(columns={'t': 'ts'}, inplace=True)
+      self.df['t'] = pd.to_datetime(self.df['ts'], unit='s')
+    return self
 
   
 
