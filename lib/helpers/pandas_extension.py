@@ -26,7 +26,8 @@ class LibsAccessor:
     temp = self._obj[column_name].to_numpy()[idx]
     r = np.apply_along_axis(func, 1, temp, **kwargs)
     r[-1*(previous-1):] = np.nan
-    return pd.concat([self._obj, pd.DataFrame(r, columns=[f"{column_name}_{func.__name__}"])], axis=1)
+    return r
+    # return pd.concat([self._obj, pd.DataFrame(r, columns=[f"{column_name}_{func.__name__}"])], axis=1)
 
   def insert_slope(self, column_name, previous=1, x_range=0.0001):
     idx = np.arange(len(self._obj))[:, None] + np.arange(0, previous)[None, :]
