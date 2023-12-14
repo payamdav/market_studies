@@ -35,7 +35,7 @@ class LibsAccessor:
     y = self._obj[column_name].to_numpy()[idx]
     Y = y - y.mean(axis=1)[:, None]
     # x = np.arange(previous, 0, -1)
-    x = np.linspace(0, x_range, previous)[::-1]
+    x = np.linspace(0, x_range * previous, previous)[::-1]
     X = x - x.mean()
     slopes = np.dot(Y, X) / np.dot(X, X )
     return pd.concat([self._obj, pd.DataFrame(slopes, columns=[f"{column_name}_slope_{previous}"])], axis=1)
@@ -46,7 +46,7 @@ class LibsAccessor:
     y = self._obj[column_name].to_numpy()[idx]
     Y = y - y.mean(axis=1)[:, None]
     # x = np.arange(previous, 0, -1)
-    x = np.linspace(0, x_range, previous)[::-1]
+    x = np.linspace(0, x_range * previous, previous)[::-1]
     X = x - x.mean()
     slopes = np.dot(Y, X) / np.dot(X, X )
     sines = slopes / np.sqrt(1 + np.power(slopes, 2))

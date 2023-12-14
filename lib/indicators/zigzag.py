@@ -1,6 +1,11 @@
 import numpy as np
 
-def zigzag(a, t, extendToEnd = False, start_point = None, direction = "left", percent = False):
+def zigzag(a, t, **kwargs):
+  extendToEnd = kwargs.get('extendToEnd', False)
+  start_point = kwargs.get('start_point', None)
+  direction = kwargs.get('direction', "left")
+  percent = kwargs.get('percent', False)
+
   valt = lambda nv: nv * t if percent else t
 
   zz = np.zeros(len(a)).astype(int)
