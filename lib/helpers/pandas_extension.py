@@ -41,6 +41,7 @@ class LibsAccessor:
     return pd.concat([self._obj, pd.DataFrame(slopes, columns=[f"{column_name}_slope_{previous}"])], axis=1)
 
   def insert_sine_slope(self, column_name, previous=1, x_range=0.0001):
+    print("Sinus slope")
     idx = np.arange(len(self._obj))[:, None] + np.arange(0, previous)[None, :]
     idx = np.clip(idx, 0, len(self._obj) - 1)
     y = self._obj[column_name].to_numpy()[idx]
